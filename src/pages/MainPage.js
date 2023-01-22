@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from "styled-components";
+
+const PageContainer = styled.div`
+    height: 300px;
+`
 
 const MainPage = () => {
     
   return (
-    <div>
+    <PageContainer>
       메인페이지입니다.
-    </div>
+    </PageContainer>
   );
 };
 
