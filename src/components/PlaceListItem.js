@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import { useState } from 'react';
+import SelectModal from './SelectModal';
 
 const PlaceTemplateBlock = styled.div `
   width: 390px;
@@ -23,14 +25,22 @@ const PlaceListItemBlock = styled.div`
 `
 
 function PlaceListItem() {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <PlaceTemplateBlock>
-      <PlaceListItemBlock>
+      <PlaceListItemBlock onClick={showModal}>
         <div>아이콘</div>
         <div>장소1</div>
         <div>인물이름</div>
         <div>☆</div>
       </PlaceListItemBlock>
+      {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </PlaceTemplateBlock>
   )
 }

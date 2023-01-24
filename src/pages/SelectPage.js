@@ -35,8 +35,7 @@ const SelectPage = () => {
         <CategoryItem><input type="checkbox"></input>정치인</CategoryItem>
         <CategoryItem><input type="checkbox"></input>인권운동가</CategoryItem>
       </CategoryBlock>
-      <PlaceListItem></PlaceListItem>
-      <SelectModalPage></SelectModalPage>
+      <PlaceListItem />
     </PageContainer>
   );
 };
