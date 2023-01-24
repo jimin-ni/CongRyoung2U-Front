@@ -7,7 +7,7 @@ const IllustContainer = styled.div`
     background-color: #EAEAEA;
 `
 const IllustBoxContainer = styled.div`
-    margin: 40px;
+    margin: 30px 30px 30px 100px;
     float:left
 `
 
