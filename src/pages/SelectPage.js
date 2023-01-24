@@ -7,7 +7,7 @@ const PageContainer = styled.div`
     height: 300px;
 `
 const CategoryBlock = styled.div`
-  width: 550px;
+  width: 500px;
   height: 50px;
   background: black;
   z-index: 700;
@@ -16,10 +16,11 @@ const CategoryItem = styled.div`
   width: 80px;
   height: 20px;
   background: #EAEAEA;
-  margin: 10px 10px;
+  margin: 10px 5px;
   padding: 3px;
   float: left;
   font-size: 12px;
+  border-radius: 20px;
   z-index: 800;
 `
 
