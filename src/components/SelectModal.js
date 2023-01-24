@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const ModalStyles = styled('container')`
   width: 500px;
-  height: 950px;
+  height: 900px;
   padding: 20px;
 
   z-index: 999;

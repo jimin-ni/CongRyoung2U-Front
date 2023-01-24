@@ -4,7 +4,7 @@ import PlaceListItem from '../components/PlaceListItem';
 import SelectModalPage from '../components/SelectModalPage';
 
 const PageContainer = styled.div`
-    height: 300px;
+    
 `
 const CategoryBlock = styled.div`
   width: 500px;
