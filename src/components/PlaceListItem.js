@@ -2,11 +2,11 @@ import React from 'react';
 import styled from "styled-components";
 import { useState } from 'react';
 import SelectModal from './SelectModal';
+import { FaMapMarkerAlt, FaRegStar, BsFillStarFill } from "react-icons/fa";
 
 const PlaceTemplateBlock = styled.div `
   width: 390px;
   height: 910px;
-  background: grey;
   z-index: 700;
 `;
 
@@ -15,6 +15,7 @@ const PlaceListItemBlock = styled.div`
   margin-right: 20px;
   padding-left: 20px;
   padding-top: 20px;
+  width: 300px;
   height: 60px;
   background: #252A34;
   position: relative;
@@ -22,6 +23,48 @@ const PlaceListItemBlock = styled.div`
   border-radius: 40px;
   color: white;
   z-index: 800;
+`
+
+const IconDiv = styled.div`
+  width: 60px;
+  height: 60px;
+  position: relative;
+  left: -5px;
+  top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #FF2E63;
+`;
+const PlaceName = styled.div`
+  width: 170px;
+  height: 30px;
+  position: relative;
+  left: 55px;
+  top: -70px;
+  color: #EAEAEA;
+`;
+const PersonName = styled.div`
+  width: 170px;
+  height: 30px;
+  position: relative;
+  left: 55px;
+  top: -70px;
+  color: white;
+  font-size: 18px;
+`
+const Bookmark = styled.div`
+  width: 60px;
+  height: 60px;
+  position: relative;
+  left: 225px;
+  top: -130px;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFC700;
 `
 
 function PlaceListItem() {
@@ -35,10 +78,10 @@ function PlaceListItem() {
   return (
     <PlaceTemplateBlock>
       <PlaceListItemBlock onClick={showModal}>
-        <div>아이콘</div>
-        <div>장소1</div>
-        <div>인물이름</div>
-        <div>☆</div>
+        <IconDiv><FaMapMarkerAlt /></IconDiv>
+        <PlaceName>장소</PlaceName>
+        <PersonName>인물이름</PersonName>
+        <Bookmark><FaRegStar /></Bookmark>
       </PlaceListItemBlock>
       {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </PlaceTemplateBlock>

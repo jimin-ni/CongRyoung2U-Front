@@ -14,8 +14,8 @@ const ModalStyles = styled('container')`
 
   background-color: #252A34;
   color: white;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
 `
 
 function ModalBasic({ setModalOpen })

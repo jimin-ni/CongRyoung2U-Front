@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import PlaceListItem from '../components/PlaceListItem';
-import SelectModalPage from '../components/SelectModalPage';
 
 const PageContainer = styled.div`
     
@@ -9,8 +8,9 @@ const PageContainer = styled.div`
 const CategoryBlock = styled.div`
   width: 500px;
   height: 50px;
-  background: black;
   z-index: 700;
+  padding-left: 15px;
+  padding-top: 20px;
 `
 const CategoryItem = styled.div`
   width: 80px;
