@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
 
+//BackGround 스크립트 불러옴
+import Background from '../components/Background';
+
 const PageContainer = styled.div`
     height: 2500px;
 `
