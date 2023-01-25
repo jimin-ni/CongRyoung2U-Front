@@ -23,9 +23,14 @@ const IllustTitleContainer = styled.h1`
 
 
 const MyPage = () => {
-    
+
+  var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  const Illustlist = list.map(function(a){
+    return <Illust/>
+  });
+
   return (
-    <PageContainer><br/>
+    <PageContainer>
       <UserInfoContainer>
         <div style={{float: 'left'}}>
           <h1>아무개</h1>
@@ -39,20 +44,8 @@ const MyPage = () => {
       <IllustTitleContainer>
         일러스트 목록
       </IllustTitleContainer>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
-      <Illust/>
+      {Illustlist}
+
     </PageContainer>
     
   );
