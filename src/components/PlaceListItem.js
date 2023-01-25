@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import { useState } from 'react';
-import SelectModal from './SelectModal';
 import { FaMapMarkerAlt, FaRegStar } from "react-icons/fa";
 
 
@@ -63,12 +62,10 @@ const Bookmark = styled.div`
   color: #FFC700;
 `
 
-function PlaceListItem() {
-
-  const [modalOpen, setModalOpen] = useState(false);
+const PlaceListItem = (props) => {
 
   const showModal = () => {
-    setModalOpen(true);
+    props.setModalOpen(true);
   };
 
   return (
@@ -79,7 +76,6 @@ function PlaceListItem() {
         <PersonName>인물이름</PersonName>
         <Bookmark><FaRegStar /></Bookmark>
       </PlaceListItemBlock>
-      {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import Illust from '../components/Illust';
+import SelectModal from '../components/IllustModal';
 
 const PageContainer = styled.div`
     height: 2500px;
@@ -23,10 +24,11 @@ const IllustTitleContainer = styled.h1`
 
 
 const MyPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   const Illustlist = list.map(function(a){
-    return <Illust/>
+    return <Illust setModalOpen={setModalOpen} />
   });
 
   return (
@@ -45,7 +47,7 @@ const MyPage = () => {
         일러스트 목록
       </IllustTitleContainer>
       {Illustlist}
-
+      {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </PageContainer>
     
   );
