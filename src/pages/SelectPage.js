@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PlaceListItem from '../components/PlaceListItem';
 import { useState } from "react";
 import Map from "../components/GoogleMap";
+import SelectModal from '../components/SelectModal';
 
 const PageContainer = styled.div`
     
@@ -32,10 +33,11 @@ const CategoryItem = styled.div`
 `
 
 const MapBlock = styled.div`
-  z-index: 100;
+  z-index: 0;
 `
 
 const SelectPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   
   const [places/*, setPlaces*/] = useState([
     { placeName: "장소1", personName: "인물명1" },
@@ -46,7 +48,7 @@ const SelectPage = () => {
   ])
 
   const PlaceList = places?.map(() => {
-    return <PlaceListItem />
+    return <PlaceListItem setModalOpen={setModalOpen} />
   })
 
   return (
@@ -65,6 +67,7 @@ const SelectPage = () => {
       <PlaceTemplateBlock>
         {PlaceList}
       </PlaceTemplateBlock>
+      {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </PageContainer>
   );
 };

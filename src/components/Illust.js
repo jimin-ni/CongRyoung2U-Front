@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import { useState } from 'react';
-import SelectModal from './IllustModal';
 
 const IllustContainer = styled.div`
     height: 357px;
@@ -13,11 +12,11 @@ const IllustBoxContainer = styled.div`
     float:left
 `
 
-function Illust() {
+const Illust = (props) => {
 
-    const [modalOpen, setModalOpen] = useState(false);
     const showModal = () => {
-        setModalOpen(true);
+        props.setModalOpen(false);
+        props.setModalOpen(true);
     };
     
     return (
@@ -28,7 +27,7 @@ function Illust() {
                 </IllustContainer>
                 일러스트 이름
             </IllustBoxContainer>
-            {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
+            
         </div>
     );
 };
