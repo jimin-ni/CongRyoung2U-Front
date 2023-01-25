@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import Navbar from "../components/Navbar";
 import PlaceListItem from '../components/PlaceListItem';
 import { useState } from "react";
 import Map from "../components/GoogleMap";
@@ -58,6 +59,7 @@ const SelectPage = () => {
 
   return (
     <PageContainer>
+      <Navbar />
       <MapBlock>
         <Map />
         <CategoryBlock>

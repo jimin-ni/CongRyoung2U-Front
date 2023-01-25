@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import Illust from '../components/Illust';
 import SelectModal from '../components/IllustModal';
+import Navbar from "../components/Navbar";
 
 const PageContainer = styled.div`
     height: 2500px;
@@ -33,6 +34,7 @@ const MyPage = () => {
 
   return (
     <PageContainer>
+      <Navbar />
       <UserInfoContainer>
         <div style={{float: 'left'}}>
           <h1>아무개</h1>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const PageContainer = styled.div`
-  background: linear-gradient(purple, #08D9D6);
+  background: linear-gradient(#252A34, #252A34, #08D9D6);
   display: flex;
   flex-flow: wrap;
 `
@@ -14,16 +14,11 @@ const LeftContainer=styled.div`
 
 `
 
-const LogoImage = styled.div`
-  margin: 100px 100px 0 200px;
-  font-size: 60px;
-`
-
 const MainImage = styled.img`
   display: inline-block;
-  width: 800px;
-  height: 800px;
-  margin: 0 100px 100px 200px;
+  width: 700px;
+  height: 700px;
+  margin: 40px 0 0 300px;
 `
 
 const ExplainContainer = styled.div`
@@ -32,27 +27,27 @@ const ExplainContainer = styled.div`
 `
 const Explain = styled.div`
   width: 500px;
-  height: 500px;
+  height: 400px;
   background: #ffffff66;
   padding: 40px;
-  margin: 0 0 100px 0;
+  margin: 0 0 40px 40px;
 `
 
 const MapButton = styled(Link)`
   text-decoration: none;
   text-align: center;
-  margin: 0 40px;
+  margin: 0 120px;
 `;
 
 const ButtonShape = styled.div`
   display: inline-block;
-  width: 500px;
+  width: 400px;
   background-color: #FF2E63;
   color: white;
   font-weight: bold;
-  font-size: 48px;
+  font-size: 40px;
   border-radius: 200px;
-  padding: 40px 0;
+  padding: 30px 0;
 `;
 
 const ButtonIcon = styled.img`
@@ -67,8 +62,7 @@ const MainPage = () => {
     <Navbar />
     <PageContainer>
       <LeftContainer>
-        <LogoImage>GGG</LogoImage>
-        <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
+        <MainImage src={require("../image/main_img_logo.png")} alt={`GGG 대문 이미지`} />
       </LeftContainer>
       
       <ExplainContainer>
@@ -81,7 +75,7 @@ const MainPage = () => {
             &nbsp;&nbsp;Let's Globe
           </ButtonShape>
         </MapButton>
-       
+      
       </ExplainContainer>
       
     </PageContainer>

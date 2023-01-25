@@ -3,11 +3,19 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const NavContainer = styled.div`
-  height: 100px;
-  background-color: #252A34;
+  height: 70px;
+  background-color: black;
   padding: 15px;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+
 `;
+
+const LogoImage = styled.img`
+  height: 40px;
+  margin: 0 20px;
+`
 
 const MenuWrapper = styled.div`
   display: inline-block; 
@@ -24,13 +32,16 @@ const TextLink = styled(Link)`
 
 const AuthWrapper = styled.div`
   display: inline-block;
-  float: right;
+  margin-left: auto;
 `
 
 const NavPage = () => {
     
   return (
     <NavContainer>
+      <TextLink to={'/'}>
+        <LogoImage src={require("../image/GGG_icon_white.png")} alt={`GGG logo`} />
+      </TextLink>
       <MenuWrapper>
         <TextLink to={'/'}>
           <Text>메인화면</Text>
