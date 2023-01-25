@@ -2,16 +2,17 @@ import React from 'react';
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
-  height: 100px;
+  height: 50px;
   background-color: #08D9D6;
-  padding: 15px;
+  padding: 30px;
+  text-align: right;
 `;
 
 const Footer = () => {
     
   return (
     <FooterContainer>
-      푸터바
+      Copyrightⓒ2023 by 콩룡투유 Corner
     </FooterContainer>
   );
 };
