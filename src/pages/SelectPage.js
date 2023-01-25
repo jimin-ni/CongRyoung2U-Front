@@ -32,7 +32,7 @@ const CategoryItem = styled.div`
 `
 
 const MapBlock = styled.div`
-  z-index: 100;
+  z-index: 0;
 `
 
 const SelectPage = () => {

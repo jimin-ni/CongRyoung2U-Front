@@ -2,8 +2,8 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '600px',
-  height: '600px'
+  width: '100%',
+  height: '800px'
 };
 
 const center = {
@@ -14,7 +14,7 @@ const center = {
 function Map() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "api"
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
   })
 
   const [map, setMap] = React.useState(null)
