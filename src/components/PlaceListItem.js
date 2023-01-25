@@ -2,17 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import { useState } from 'react';
 import SelectModal from './SelectModal';
-import { FaMapMarkerAlt, FaRegStar, BsFillStarFill } from "react-icons/fa";
+import { FaMapMarkerAlt, FaRegStar } from "react-icons/fa";
 
-const PlaceTemplateBlock = styled.div `
-  width: 390px;
-  height: 910px;
-  z-index: 700;
-`;
 
 const PlaceListItemBlock = styled.div`
   margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 20px;
   padding-left: 20px;
   padding-top: 20px;
   width: 300px;
@@ -22,7 +18,7 @@ const PlaceListItemBlock = styled.div`
   top: 20px;
   border-radius: 40px;
   color: white;
-  z-index: 800;
+  z-index: 700;
 `
 
 const IconDiv = styled.div`
@@ -76,7 +72,7 @@ function PlaceListItem() {
   };
 
   return (
-    <PlaceTemplateBlock>
+    <div>
       <PlaceListItemBlock onClick={showModal}>
         <IconDiv><FaMapMarkerAlt /></IconDiv>
         <PlaceName>장소</PlaceName>
@@ -84,7 +80,7 @@ function PlaceListItem() {
         <Bookmark><FaRegStar /></Bookmark>
       </PlaceListItemBlock>
       {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
-    </PlaceTemplateBlock>
+    </div>
   )
 }
 
