@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import PlaceListItem from '../components/PlaceListItem';
 import { useState } from "react";
+import Map from "../components/GoogleMap";
 
 const PageContainer = styled.div`
     
@@ -30,9 +31,13 @@ const CategoryItem = styled.div`
   z-index: 800;
 `
 
+const MapBlock = styled.div`
+  z-index: 100;
+`
+
 const SelectPage = () => {
   
-  const [places, setPlaces] = useState([
+  const [places/*, setPlaces*/] = useState([
     { placeName: "장소1", personName: "인물명1" },
     { placeName: "장소2", personName: "인물명2" },
     { placeName: "장소3", personName: "인물명3" },
@@ -46,6 +51,10 @@ const SelectPage = () => {
 
   return (
     <PageContainer>
+      <MapBlock>
+        <Map />
+      </MapBlock>
+
       <CategoryBlock>
         <CategoryItem><input type="checkbox"></input>과학자</CategoryItem>
         <CategoryItem><input type="checkbox"></input>공학자</CategoryItem>
