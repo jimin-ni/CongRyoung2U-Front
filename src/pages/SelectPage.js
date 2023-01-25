@@ -11,14 +11,18 @@ const PageContainer = styled.div`
 const PlaceTemplateBlock = styled.div `
   width: 390px;
   height: 910px;
-  z-index: 700;
+  position: relative;
+  top: -1000px;
+  z-index: 500;
 `
 const CategoryBlock = styled.div`
   width: 500px;
   height: 50px;
-  z-index: 700;
   padding-left: 15px;
   padding-top: 20px;
+  position: relative;
+  top: -1000px;
+  z-index: 500;
 `
 const CategoryItem = styled.div`
   width: 80px;
@@ -29,11 +33,12 @@ const CategoryItem = styled.div`
   float: left;
   font-size: 12px;
   border-radius: 20px;
-  z-index: 800;
+  box-shadow: 2px 2px 2px 2px gray;
 `
 
 const MapBlock = styled.div`
   z-index: 0;
+  height: 990px;
 `
 
 const SelectPage = () => {
@@ -44,7 +49,7 @@ const SelectPage = () => {
     { placeName: "장소2", personName: "인물명2" },
     { placeName: "장소3", personName: "인물명3" },
     { placeName: "장소4", personName: "인물명4" },
-    { placeName: "장소5", personName: "인물명5" }
+    { placeName: "장소5", personName: "인물명5" },
   ])
 
   const PlaceList = places?.map(() => {
@@ -55,19 +60,18 @@ const SelectPage = () => {
     <PageContainer>
       <MapBlock>
         <Map />
+        <CategoryBlock>
+          <CategoryItem><input type="checkbox"></input>과학자</CategoryItem>
+          <CategoryItem><input type="checkbox"></input>공학자</CategoryItem>
+          <CategoryItem><input type="checkbox"></input>기업인</CategoryItem>
+          <CategoryItem><input type="checkbox"></input>정치인</CategoryItem>
+          <CategoryItem><input type="checkbox"></input>인권운동가</CategoryItem>
+        </CategoryBlock>
+        <PlaceTemplateBlock>
+          {PlaceList}
+        </PlaceTemplateBlock>
+        {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
       </MapBlock>
-
-      <CategoryBlock>
-        <CategoryItem><input type="checkbox"></input>과학자</CategoryItem>
-        <CategoryItem><input type="checkbox"></input>공학자</CategoryItem>
-        <CategoryItem><input type="checkbox"></input>기업인</CategoryItem>
-        <CategoryItem><input type="checkbox"></input>정치인</CategoryItem>
-        <CategoryItem><input type="checkbox"></input>인권운동가</CategoryItem>
-      </CategoryBlock>
-      <PlaceTemplateBlock>
-        {PlaceList}
-      </PlaceTemplateBlock>
-      {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
     </PageContainer>
   );
 };

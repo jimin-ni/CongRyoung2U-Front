@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import { useState } from 'react';
 import { FaMapMarkerAlt, FaRegStar } from "react-icons/fa";
 
 
@@ -18,6 +17,7 @@ const PlaceListItemBlock = styled.div`
   border-radius: 40px;
   color: white;
   z-index: 700;
+  box-shadow: 2px 2px 2px 2px gray;
 `
 
 const IconDiv = styled.div`
