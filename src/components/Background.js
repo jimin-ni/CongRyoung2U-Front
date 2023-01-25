@@ -1,6 +1,6 @@
 //GamePage.js에 들어갈 배경 컴포넌트
 
-import React, { Component, useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 //import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 // import BackgroundImg from '(게임 배경 png 링크 - 추후 수정)';
