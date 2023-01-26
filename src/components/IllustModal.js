@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 const ModalStyles = styled('container')`
@@ -34,9 +33,10 @@ const PlayButStyle = styled.button`
     border-radius: 60px;
     width: 170px;
     height: 63px;
+    border: 0px;
 `
 
-const IllustContainer = styled.div`
+const IllustContainer = styled.img`
     height: 630px;
     width: 630px;
     background-color: #EAEAEA;
@@ -44,22 +44,21 @@ const IllustContainer = styled.div`
     margin: 0px 30px 0px 0px;
 `
 
-function ModalBasic({ setModalOpen })
-{
+const ModalBasic = ({setModalOpen, data}) => {
+
     const closeModal = () => {
     setModalOpen(false);
     };
 
+    
     return (
         <ModalStyles>
             <div>
-                <IllustContainer>
-                    <div>일러스트</div>
-                </IllustContainer>
+                <IllustContainer src={data.image}/>
                 <XButStyle onClick={closeModal}>X</XButStyle>
                 <div>
-                    <h1>일러스트 명</h1>
-                    <div>일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개일러스트, 인물 소개</div>
+                    <h1>{data.name}</h1>
+                    <div>{data.desc}</div>
                 </div>
                 <PlayButStyle >플레이버튼</PlayButStyle>
             </div>
