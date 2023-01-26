@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+//import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 //BackGround 스크립트 불러옴
 import Background from '../components/Background';
@@ -27,14 +27,14 @@ const MapInfo_Top_Text = styled.div`
 const CategoryInfo = styled.div`
   display: inline-block;
   padding: 10px;
-  font-size: 15px;
+  font-size: 20px;
   color: white;
   align-items: center;
 `
 const PlaceInfo = styled.div`
   display: inline-block;
   padding: 10px;
-  font-size: 15px;
+  font-size: 20px;
   color: white;
   align-items: center;
 `
@@ -56,11 +56,12 @@ text-decoration: none;
 `
 const ItemScore = styled.div`
 text-decoration: none;
+
 `
 
 const CharacterInfo = styled.div`
   padding: 10px;
-  font-size: 30px;
+  font-size: 35px;
   color: #08D9D6;
   align-items: center;
   display: 'flex';
@@ -84,19 +85,29 @@ const MapInfo_Bottom_2 = styled.div`
   padding: 15px;
   position: bottom;
   border-radius: 30px 30px 0 0;
-  width: wp('100%');
+  width: 700%;
+
 `
 const IllustItem = styled.div`
   height: 50px;
   padding: 15px;
   position: absolute;  
   color: #FF2E63;
+  display: inline-block;
+  align-items: center;
+  position:relative;
+  margin-bottom: 5px;
+  font-size: 25px;
 `
 const IllustText = styled.div`
   height: 50px;
   padding: 15px;
   position: absolute;  
   color: #252A34;
+  font-size: 20px;
+  position:relative;
+  margin-top: -20px;
+
 `
 
 
