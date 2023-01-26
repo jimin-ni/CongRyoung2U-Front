@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaPlay } from "react-icons/fa";
 
 const ModalStyles = styled('container')`
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
@@ -17,6 +18,7 @@ const ModalStyles = styled('container')`
     background-color: #252A34;
     color: white;
     border-radius: 40px;
+    box-shadow: 2px 2px 2px 2px gray;
 `
 const XButStyle = styled.button`
     position: absolute;
@@ -28,12 +30,31 @@ const XButStyle = styled.button`
 const PlayButStyle = styled.button`
     position: fixed;
     bottom: 48px;
-
     background-color: #08D9D6;
     border-radius: 60px;
-    width: 170px;
+    width: 350px;
     height: 63px;
     border: 0px;
+    
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #EEEEEE;
+`
+
+const PlayButton = styled.div`
+    padding: 20px;
+    width: 90px;
+    height: 15px;
+    border-radius: 30px;
+    background: #08D9D6;
+    position: fixed;
+    bottom: 48px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
 `
 
 const IllustContainer = styled.img`
@@ -60,7 +81,7 @@ const ModalBasic = ({setModalOpen, data}) => {
                     <h1>{data.name}</h1>
                     <div>{data.desc}</div>
                 </div>
-                <PlayButStyle >플레이버튼</PlayButStyle>
+                <PlayButStyle><FaPlay /></PlayButStyle>
             </div>
         </ModalStyles>
     );

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 
 const PageContainer = styled.div`
-    height: 2500px;
+    height: 2800px;
 `
 
 const UserInfoContainer = styled.div`
