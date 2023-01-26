@@ -30,13 +30,18 @@ const PlaceDesc = styled.div`
   padding: 20px;
   height: 200px;
 `
-const PersonImage = styled.div`
+const PersonImageBlock = styled.div`
   margin: 20px;
   width: 214.285px;
   height: 285.714px;
-  background: gray;
   position: relative;
   top: 50px;
+`
+const PersonImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 const PersonName = styled.div`
   padding: 20px;
@@ -96,7 +101,9 @@ function ModalBasic({ setModalOpen, data })
         </button>
         <PlaceName>{data.placeName}</PlaceName>
         <PlaceDesc>{data.placeDesc}</PlaceDesc>
-        <PersonImage>인물사진</PersonImage>
+        <PersonImageBlock>
+          <PersonImage src={data.personImage} />
+        </PersonImageBlock>
         <PersonName>{data.personName}</PersonName>
         <BirthDeath>({data.personYear})</BirthDeath>
         <PersonDesc>{data.personDesc}</PersonDesc>
