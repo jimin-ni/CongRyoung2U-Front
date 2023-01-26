@@ -11,11 +11,12 @@ const PageContainer = styled.div`
     
 `
 const PlaceTemplateBlock = styled.div `
-  width: 390px;
-  height: 910px;
+  width: 420px;
+  height: 930px;
   position: relative;
   top: -1000px;
   z-index: 500;
+  overflow: scroll;
 `
 const CategoryBlock = styled.div`
   width: 500px;
@@ -45,7 +46,7 @@ const MapBlock = styled.div`
 
 const SelectPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  
+
   const [places, setPlaces] = useState([])
   useEffect(() => {
     axios.get("api/stage/list").then((response) => {

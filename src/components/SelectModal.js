@@ -10,7 +10,7 @@ const ModalStyles = styled.div`
   z-index: 999;
 
   position: absolute;
-  top: 150px;
+  top: 125px;
   right: 0%;
 
   background-color: #252A34;
