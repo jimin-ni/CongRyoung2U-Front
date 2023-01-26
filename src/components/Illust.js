@@ -1,31 +1,40 @@
 import React from 'react';
 import styled from "styled-components";
-import { useState } from 'react';
 
 const IllustContainer = styled.div`
-    height: 357px;
-    width: 357px;
+    height: 350px;
+    width: 350px;
     background-color: #EAEAEA;
 `
 const IllustBoxContainer = styled.div`
     margin: 30px 30px 30px 100px;
     float:left
 `
+const IllustImage = styled.img`
+    display: inline-block;
+    height: 350px;
+    width: 350px;
+`
+
 
 const Illust = (props) => {
 
+    const data = props.data;
+
     const showModal = () => {
         props.setModalOpen(false);
+        props.setillustId(data._id); //부모가 갖고 있는 스테이트를 셋팅함
         props.setModalOpen(true);
     };
+
     
     return (
         <div>
             <IllustBoxContainer>
                 <IllustContainer onClick={showModal}>
-                    <div>일러스트</div>
+                    <IllustImage src={data.image}/>
                 </IllustContainer>
-                일러스트 이름
+                <h3>{data.name}</h3>
             </IllustBoxContainer>
             
         </div>
