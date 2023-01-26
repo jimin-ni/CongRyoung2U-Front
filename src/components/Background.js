@@ -1,9 +1,8 @@
 //GamePage.js에 들어갈 배경 컴포넌트
 
 import React, { useState, useEffect, useRef } from 'react'
-//import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
-// import BackgroundImg from '(게임 배경 png 링크 - 추후 수정)';
+import BackgroundImg from '../image/background_test.png';
 
 //임시 배경 스타일 (게임 배경 png 링크 - 추후 수정)
 const useStyles = makeStyles(theme => ({
@@ -55,7 +54,7 @@ function Background() {
           // right
             ctx.drawImage(imageObj, 0, 0, offSet, 500, 1000 - offSet, 0, offSet, 500);
         }
-        //imageObj.src = BackgroundImg; (BackgroundImg =게임 배경 png 링크  - 추후 수정)
+        imageObj.src = BackgroundImg; 
     }
   // css
     //canvas태그 살리기 위해 css 내용을 아래와 같이 넣음
