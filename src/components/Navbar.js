@@ -54,10 +54,10 @@ const NavPage = () => {
         </TextLink>
       </MenuWrapper>
       <AuthWrapper>
-        <TextLink to={'/'}>
+        <TextLink to={'/login'}>
           <Text>로그인</Text>
         </TextLink>
-        <TextLink to={'/'}>
+        <TextLink to={'/signup'}>
           <Text>회원가입</Text>
         </TextLink>
       </AuthWrapper>
