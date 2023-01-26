@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import PlaceListItem from '../components/PlaceListItem';
 import { useState } from "react";
 import Map from "../components/GoogleMap";
 import SelectModal from '../components/SelectModal';
+import axios from 'axios';
 
 const PageContainer = styled.div`
     
@@ -45,16 +46,16 @@ const MapBlock = styled.div`
 const SelectPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   
-  const [places/*, setPlaces*/] = useState([
-    { placeName: "장소1", personName: "인물명1" },
-    { placeName: "장소2", personName: "인물명2" },
-    { placeName: "장소3", personName: "인물명3" },
-    { placeName: "장소4", personName: "인물명4" },
-    { placeName: "장소5", personName: "인물명5" },
-  ])
+  const [places, setPlaces] = useState([])
+  useEffect(() => {
+    axios.get("api/stage/list").then((response) => {
+      console.log(response.data.stageList)
+      setPlaces(response.data.stageList)
+    })
+  },[])
 
-  const PlaceList = places?.map(() => {
-    return <PlaceListItem setModalOpen={setModalOpen} />
+  const PlaceList = places?.map((data, index) => {
+    return <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} />
   })
 
   return (
