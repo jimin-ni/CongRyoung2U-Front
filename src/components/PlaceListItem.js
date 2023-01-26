@@ -62,12 +62,12 @@ const Bookmark = styled.div`
 `
 
 const PlaceListItem = (props) => {
+  const data = props.data;
 
   const showModal = () => {
+    props.setStageId(data._id);
     props.setModalOpen(true);
   };
-
-  const data = props.data;
 
   return (
     <div>

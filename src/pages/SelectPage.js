@@ -46,8 +46,10 @@ const MapBlock = styled.div`
 
 const SelectPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [stageId, setStageId] = useState("")
   const [places, setPlaces] = useState([])
+  const [place, setPlace] = useState("")
+
   useEffect(() => {
     axios.get("api/stage/list").then((response) => {
       console.log(response.data.stageList)
@@ -55,8 +57,15 @@ const SelectPage = () => {
     })
   },[])
 
+  useEffect(() => {
+    axios.get(`api/stage/detail/${stageId&&stageId}`).then((response) => {
+      console.log(response.data.stage)
+      setPlace(response.data.stage)
+    })
+  },[stageId])
+
   const PlaceList = places?.map((data, index) => {
-    return <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} />
+    return <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} setStageId={setStageId} />
   })
 
   return (
@@ -74,7 +83,7 @@ const SelectPage = () => {
         <PlaceTemplateBlock>
           {PlaceList}
         </PlaceTemplateBlock>
-        {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
+        {modalOpen && <SelectModal setModalOpen={setModalOpen} id={stageId} data={place} />}
       </MapBlock>
     </PageContainer>
   );
