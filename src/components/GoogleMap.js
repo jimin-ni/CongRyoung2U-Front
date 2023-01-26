@@ -1,5 +1,7 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
+import { useState } from "react";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const containerStyle = {
   width: '100%',
@@ -28,6 +30,11 @@ function Map() {
     setMap(null)
   }, [])
 
+  const [locations, setLocations] = useState([
+    { lat: "35", lng: "127" },
+    { lat: "-35", lng: "150 "}
+  ]);
+
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -36,7 +43,7 @@ function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        { /* Child components, such as markers, info windows, etc. */ }
+        { <MarkerF position={center} />}
         <></>
       </GoogleMap>
   ) : <></>

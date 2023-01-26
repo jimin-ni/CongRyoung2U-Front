@@ -7,11 +7,11 @@ const PageContainer = styled.div`
   background: linear-gradient(#252A34, #252A34, #08D9D6);
   display: flex;
   flex-flow: wrap;
+  height: 850px;
 `
 
-const LeftContainer=styled.div`
+const LeftContainer = styled.div`
   width: 1000px;  
-
 `
 
 const MainImage = styled.img`
@@ -21,7 +21,7 @@ const MainImage = styled.img`
   margin: 40px 0 0 300px;
 `
 
-const ExplainContainer = styled.div`
+const RightContainer = styled.div`
   width: 700px;
   margin: 100px 0;
 `
@@ -64,8 +64,7 @@ const MainPage = () => {
       <LeftContainer>
         <MainImage src={require("../image/main_img_logo.png")} alt={`GGG 대문 이미지`} />
       </LeftContainer>
-      
-      <ExplainContainer>
+      <RightContainer>
         <Explain>
           콩룡이와 함께 세계를 여행해요!
         </Explain>
@@ -75,9 +74,7 @@ const MainPage = () => {
             &nbsp;&nbsp;Let's Globe
           </ButtonShape>
         </MapButton>
-      
-      </ExplainContainer>
-      
+      </RightContainer>
     </PageContainer>
     </>
   );
