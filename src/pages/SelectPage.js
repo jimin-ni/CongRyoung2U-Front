@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import PlaceListItem from '../components/PlaceListItem';
 import { useState } from "react";
 import Map from "../components/GoogleMap";
 import SelectModal from '../components/SelectModal';
+import axios from 'axios';
 
 const PageContainer = styled.div`
     
 `
 const PlaceTemplateBlock = styled.div `
-  width: 390px;
-  height: 910px;
+  width: 420px;
+  height: 930px;
   position: relative;
   top: -1000px;
   z-index: 500;
+  overflow: scroll;
 `
 const CategoryBlock = styled.div`
   width: 500px;
@@ -44,17 +46,26 @@ const MapBlock = styled.div`
 
 const SelectPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  
-  const [places/*, setPlaces*/] = useState([
-    { placeName: "장소1", personName: "인물명1" },
-    { placeName: "장소2", personName: "인물명2" },
-    { placeName: "장소3", personName: "인물명3" },
-    { placeName: "장소4", personName: "인물명4" },
-    { placeName: "장소5", personName: "인물명5" },
-  ])
+  const [stageId, setStageId] = useState("")
+  const [places, setPlaces] = useState([])
+  const [place, setPlace] = useState("")
 
-  const PlaceList = places?.map(() => {
-    return <PlaceListItem setModalOpen={setModalOpen} />
+  useEffect(() => {
+    axios.get("api/stage/list").then((response) => {
+      console.log(response.data.stageList)
+      setPlaces(response.data.stageList)
+    })
+  },[])
+
+  useEffect(() => {
+    axios.get(`api/stage/detail/${stageId&&stageId}`).then((response) => {
+      console.log(response.data.stage)
+      setPlace(response.data.stage)
+    })
+  },[stageId])
+
+  const PlaceList = places?.map((data, index) => {
+    return <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} setStageId={setStageId} />
   })
 
   return (
@@ -72,7 +83,7 @@ const SelectPage = () => {
         <PlaceTemplateBlock>
           {PlaceList}
         </PlaceTemplateBlock>
-        {modalOpen && <SelectModal setModalOpen={setModalOpen} />}
+        {modalOpen && <SelectModal setModalOpen={setModalOpen} id={stageId} data={place} />}
       </MapBlock>
     </PageContainer>
   );
