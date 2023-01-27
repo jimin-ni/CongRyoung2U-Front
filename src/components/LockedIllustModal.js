@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import React, { useRef, useEffect } from 'react';
 
 const ModalStyles = styled('container')`
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);

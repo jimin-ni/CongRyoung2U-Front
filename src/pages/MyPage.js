@@ -70,8 +70,8 @@ const MyPage = () => {
 
       //console.log(illustList);
       //console.log(itemList);
-    },[userId])
-  });
+    })
+  },[]);
 
   const Illustlist = list?.map((data, index) => {
     return ((userIllust).includes(data._id)) ? (
@@ -98,7 +98,7 @@ const MyPage = () => {
       <UserInfoContainer>
         <div style={{float: 'left'}}>
           <h1>{info.name}</h1>
-          <h3>{info.email}<br/>해금 일러스트 수 : n / 14</h3>
+          <h3>{info.email}<br/>해금 일러스트 수 : {userIllust.length} / 14</h3>
         </div>
         <IconContainer alt="logo" src={require("../image/main_img_logo.png")}/>
       </UserInfoContainer>
@@ -107,10 +107,13 @@ const MyPage = () => {
         일러스트 목록
       </IllustTitleContainer>
       {Illustlist}
-      {(modalOpen) && <IllustModal setModalOpen={setModalOpen} data={illust}/>}
+      {/* {(modalOpen && (userIllust).includes(illustId)) ? <IllustModal setModalOpen={setModalOpen} data={illust}/> : <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>} */}
+      {(modalOpen && (userIllust).includes(illustId)) && <IllustModal setModalOpen={setModalOpen} data={illust}/> }
+      {(modalOpen && !((userIllust).includes(illustId))) && <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>}
     </PageContainer>
     
   );
 };
+
 
 export default MyPage;
