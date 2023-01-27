@@ -64,11 +64,11 @@ const ModalBasic = ({setModalOpen, data}) => {
     return (
         <ModalStyles>
             <div>
-                <IllustContainer src={data.image}/>
+                <IllustContainer src={require("../image/illust_lock.png")}/>
                 <XButStyle onClick={closeModal}>X</XButStyle>
                 <div>
-                    <h1>{data.name}</h1>
-                    <div>{data.desc}</div>
+                    <h1>미해금</h1>
+                    <div>해금되지 않은 일러스트입니다.</div>
                 </div>
                 <Play to={`/game`}>
                     <PlayButStyle><FaPlay /></PlayButStyle>

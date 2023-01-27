@@ -28,11 +28,11 @@ const CategoryBlock = styled.div`
   z-index: 500;
 `
 const CategoryItem = styled.div`
-  width: 80px;
   height: 20px;
   background: #EAEAEA;
   margin: 10px 5px;
   padding: 3px;
+  padding-right: 10px;
   float: left;
   font-size: 12px;
   border-radius: 20px;
@@ -72,13 +72,13 @@ const SelectPage = () => {
     <PageContainer>
       <Navbar />
       <MapBlock>
-        <Map />
+        <Map setModalOpen={setModalOpen} setStageId={setStageId}/>
         <CategoryBlock>
-          <CategoryItem><input type="checkbox"></input>과학자</CategoryItem>
-          <CategoryItem><input type="checkbox"></input>공학자</CategoryItem>
-          <CategoryItem><input type="checkbox"></input>기업인</CategoryItem>
-          <CategoryItem><input type="checkbox"></input>정치인</CategoryItem>
-          <CategoryItem><input type="checkbox"></input>인권운동가</CategoryItem>
+          <CategoryItem><input type="checkbox" id="1"></input>과학자</CategoryItem>
+          <CategoryItem><input type="checkbox" id="2"></input>공학자</CategoryItem>
+          <CategoryItem><input type="checkbox" id="3"></input>기업인</CategoryItem>
+          <CategoryItem><input type="checkbox" id="4"></input>정치인</CategoryItem>
+          <CategoryItem><input type="checkbox" id="5"></input>인권운동가</CategoryItem>
         </CategoryBlock>
         <PlaceTemplateBlock>
           {PlaceList}

@@ -17,7 +17,7 @@ const IllustImage = styled.img`
 `
 
 
-const Illust = (props) => {
+const LockedIllust = (props) => {
 
     const data = props.data;
 
@@ -32,12 +32,14 @@ const Illust = (props) => {
         <div>
             <IllustBoxContainer>
                 <IllustContainer onClick={showModal}>
-                    <IllustImage src={data.image}/>
+                    <IllustImage src={require("../image/illust_lock.png")}/>
                 </IllustContainer>
-                <h3>{data.name}</h3> 
+                <h3>아이템 들어가야 됨</h3> 
             </IllustBoxContainer>
             
         </div>
     );
 };
-export default Illust;
+export default LockedIllust;
+
+
