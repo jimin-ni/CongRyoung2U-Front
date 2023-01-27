@@ -123,8 +123,8 @@ const Signup = () => {
               <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
             </LeftContainer>
             <RightContainer>
-                <Title>Welcome!</Title>
                 <Form onSubmit={handleSubmit}>
+                <Title>Welcome!</Title>
                   <Input
                     type="text"
                     name="name"
