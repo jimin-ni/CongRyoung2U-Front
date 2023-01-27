@@ -10,7 +10,6 @@ const NavContainer = styled.div`
   font-size: 20px;
   display: flex;
   align-items: center;
-
 `;
 
 const LogoImage = styled.img`
@@ -27,6 +26,7 @@ const Text = styled.div`
   color: white;
   margin: 20px;
 `
+
 const TextLink = styled(Link)`
   text-decoration: none;
 `
