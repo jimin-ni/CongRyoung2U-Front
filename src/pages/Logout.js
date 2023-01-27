@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import { logoutUser } from '../redux/action/userAction';
 
 const PageContainer = styled.div`
   background: linear-gradient(#252A34, #252A34, #08D9D6);
@@ -47,13 +52,25 @@ const LogoutButton = styled.button`
 
 const Logout = () => {
 
-  const onClick = () => {
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      onClick();
-    }
+  const onClick = async () => {
+    dispatch(logoutUser()).then((response) => {
+      if (response.payload) { 
+        toast.success(
+          <div className="toast">로그아웃되었습니다.</div>,
+          {
+            position: "top-center",
+            autoClose: 2000,
+          }
+        );
+      }
+    })
+    localStorage.removeItem("userId");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NavContainer = styled.div`
   height: 70px;
@@ -35,7 +36,9 @@ const AuthWrapper = styled.div`
   margin-left: auto;
 `
 
-const NavPage = () => {
+const NavPage = (props) => {
+  const type = props.type;
+  const user = useSelector((store) => store.userReducer.userId);
     
   return (
     <NavContainer>
@@ -53,15 +56,29 @@ const NavPage = () => {
           <Text>일러스트 열람</Text>
         </TextLink>
       </MenuWrapper>
-      <AuthWrapper>
-        <TextLink to={'/login'}>
-          <Text>로그인</Text>
-        </TextLink>
-        <TextLink to={'/signup'}>
-          <Text>회원가입</Text>
-        </TextLink>
-      </AuthWrapper>
-      
+      { user ? (
+          <>
+            <AuthWrapper>
+              <TextLink to={'/my'}>
+                <Text>마이페이지</Text>
+              </TextLink>
+              <TextLink to={'/logout'}>
+                <Text>로그아웃</Text>
+              </TextLink>
+            </AuthWrapper>
+          </>
+      ) : (
+        <>
+          <AuthWrapper>
+            <TextLink to={'/login'}>
+              <Text>로그인</Text>
+            </TextLink>
+            <TextLink to={'/signup'}>
+              <Text>회원가입</Text>
+            </TextLink>
+          </AuthWrapper>
+        </>
+      )}
     </NavContainer>
   );
 };

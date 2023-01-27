@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { useSelector } from "react-redux";
 
 const PageContainer = styled.div`
   background: linear-gradient(#252A34, #252A34, #08D9D6);
@@ -56,6 +57,9 @@ const ButtonIcon = styled.img`
 `
 
 const MainPage = () => {
+  const userId = useSelector(({ userId }) => ({
+    userId: userId,
+  }));
     
   return (
     <>

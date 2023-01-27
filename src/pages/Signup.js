@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import { Formik } from "formik";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PageContainer = styled.div`
   background: linear-gradient(#252A34, #252A34, #08D9D6);
@@ -48,76 +54,105 @@ const SignupButton = styled.button`
   padding: 20px 0;
   border: none;
 `;
-
+const Toast = styled.p`
+  font-size: 20px !important;
+  color: #000 !important;
+`;
 
 const Signup = () => {
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const   onChangeNickname = (e) => setNickname(e.target.value);
-  const onChangeEmail = (e) => setEmail(e.target.value);
-  const onChangePassword = (e) => setPassword(e.target.value);
-
-  const onClick = () => {
-    alert("E-mail : " + email + "\nPassword : " + password);
-    setNickname("");
-    setEmail("");
-    setPassword("");
-  };
-
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      onClick();
-    }
-  };
+    const navigate = useNavigate();
+    const userId = useSelector((store) => store.userReducer.userId);
+    useEffect(() => {
+      if (userId) {
+        navigate("/");
+      }
+    }, []);
+    const submit = async (values) => {
+      const { name, email, password } = values || {};
+      let userInfo = {
+        name: name,
+        email: email,
+        password: password,
+      };
+  
+      axios.post("api/users/register", userInfo).then((response) => {
+        console.log(response);
+        if (response.data.success) {
+          // 회원가입 성공
+          toast.success(
+            <Toast>
+              회원가입에 성공하였습니다. <br />
+              로그인해주세요!
+            </Toast>,
+            {
+              position: "top-center",
+              autoClose: 1800,
+            }
+          );
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        }
+      });
+    };
 
   return (
-    <>
-      <Navbar />
-      <PageContainer>
-        <LeftContainer>
-          <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
-        </LeftContainer>
-        <RightContainer>
-            <Title>Welcome!</Title>
-            <Form>
-              <Input
-                type="text"
-                name="nickname"
-                placeholder="닉네임"
-                id="nickname"
-                value={nickname}
-                onChange={onChangeNickname}
-                onKeyDown={onKeyPress}
-              />
-            </Form>
-            <Form>
-              <Input
-                type="email"
-                name="email"
-                placeholder="이메일"
-                id="e-mail"
-                value={email}
-                onChange={onChangeEmail}
-              />
-            </Form>
-            <Form>
-              <Input
-                type="password"
-                name="password"
-                placeholder="비밀번호"
-                id="password"
-                value={password}
-                onChange={onChangePassword}
-                onKeyDown={onKeyPress}
-              />
-            </Form>
-            <SignupButton type="submit" onClick={onClick}>
-              Sign Up
-            </SignupButton>
-        </RightContainer>
-      </PageContainer>
-    </>
+
+    <Formik
+      initialValues={{
+        name: "",
+        email: "",
+        password: "",
+      }}
+      onSubmit={submit}
+    >
+      {({ values, handleSubmit, handleChange }) => (
+        <>
+          <Navbar />
+          <PageContainer>
+            <LeftContainer>
+              <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
+            </LeftContainer>
+            <RightContainer>
+                <Title>Welcome!</Title>
+                <Form onSubmit={handleSubmit}>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="닉네임"
+                    id="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    autoComplete="on"
+                  />
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="이메일"
+                    id="e-mail"
+                    value={values.email}
+                    onChange={handleChange}
+                    autoComplete="on"
+                  />
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호"
+                    id="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    autoComplete="on"
+                  />
+                  <SignupButton type="submit">
+                  Sign Up
+                  </SignupButton>
+                </Form>
+            </RightContainer>
+            <ToastContainer />
+          </PageContainer>
+        </>
+      )}
+    </Formik>
   );
 };
 

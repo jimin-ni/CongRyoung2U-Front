@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../redux/action/userAction";
 
 const PageContainer = styled.div`
   background: linear-gradient(#252A34, #252A34, #08D9D6);
@@ -49,61 +56,94 @@ const LoginButton = styled.button`
   border: none;
 `;
 
+const Toast = styled.p`
+  font-size: 20px !important;
+  color: #000 !important;
+`;
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const onChangeEmail = (e) => setEmail(e.target.value);
-  const onChangePassword = (e) => setPassword(e.target.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userId = useSelector((store) => store.userReducer.userId);
 
-  const onClick = () => {
-    alert("E-mail : " + email + "\nPassword : " + password);
-    setEmail("");
-    setPassword("");
-  };
-
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      onClick();
+  useEffect(() => {
+    if (userId) {
+      navigate("/");
     }
-  };
+  }, []);
 
+  const submit = async (values) => {
+    const { email, password } = values || {};
+    console.log(email);
+    let userInfo = {
+      email: email,
+      password: password,
+    };
+
+    dispatch(loginUser(userInfo)).then((response) => {
+      console.log(response);
+      if (response.payload) {
+        // 로그인 성공
+        toast.success(
+          <Toast>
+            로그인에 성공했습니다!
+          </Toast>,
+          {
+            position: "top-center",
+            autoClose: 1800,
+          }
+        );
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
+    });
+  };
+  
   return (
-    <>
-      <Navbar />
-      <PageContainer>
-        <LeftContainer>
-          <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
-        </LeftContainer>
-        <RightContainer>
-            <Title>To. You</Title>
-            <Form>
-              <Input
-                type="email"
-                name="email"
-                placeholder="이메일"
-                id="e-mail"
-                value={email}
-                onChange={onChangeEmail}
-              />
-            </Form>
-            <Form>
-              <Input
-                type="password"
-                name="password"
-                placeholder="비밀번호"
-                id="password"
-                value={password}
-                onChange={onChangePassword}
-                onKeyDown={onKeyPress}
-              />
-            </Form>
-            <LoginButton type="submit" onClick={onClick}>
-              Log In
-            </LoginButton>
-        </RightContainer>
-      </PageContainer>
-    </>
+    <Formik
+    initialValues={{
+      email: "",
+      password: "",
+    }}
+    onSubmit={submit}
+  >
+    {({ values, handleSubmit, handleChange }) => (
+      <>
+        <Navbar />
+        <PageContainer>
+          <LeftContainer>
+            <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
+          </LeftContainer>
+          <RightContainer>
+              <Title>To. You</Title>
+              <Form onSubmit={handleSubmit}>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="이메일"
+                  id="e-mail"
+                  value={values.email}
+                  onChange={handleChange}
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="비밀번호"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                />
+                <LoginButton type="submit">
+                  Log In
+                </LoginButton>
+              </Form>
+          </RightContainer>
+          <ToastContainer />
+        </PageContainer>
+      </>
+    )}
+    </Formik>
   );
 };
 
