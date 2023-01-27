@@ -3,8 +3,8 @@ import React from 'react';
 
 
 const IllustContainer = styled.div`
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
     background-color: #EAEAEA;
 `
 const IllustBoxContainer = styled.div`
@@ -13,8 +13,8 @@ const IllustBoxContainer = styled.div`
 `
 const IllustImage = styled.img`
     display: inline-block;
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
 `
 
 

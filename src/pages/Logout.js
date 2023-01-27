@@ -47,6 +47,10 @@ const LogoutButton = styled.button`
   border-radius: 100px;
   padding: 20px 0;
   border: none;
+  :hover {
+    background-color: #252A34;
+    cursor: pointer;
+    }
 `;
 
 

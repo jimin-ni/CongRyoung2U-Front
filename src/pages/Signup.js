@@ -62,6 +62,10 @@ const SignupButton = styled.button`
   padding: 20px 0;
   margin: 30px;
   border: none;
+  :hover {
+    background-color: #252A34;
+    cursor: pointer;
+    }
 `;
 const Toast = styled.p`
   font-size: 20px !important;

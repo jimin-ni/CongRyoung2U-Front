@@ -11,7 +11,7 @@ const ModalStyles = styled('container')`
 
     z-index: 1000;
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -23,9 +23,16 @@ const ModalStyles = styled('container')`
 `
 const XButStyle = styled.button`
     position: absolute;
+    color: white;
     right: 10px;
     top: 10px;
     margin: 30px;
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    background-color: black;
 `
 
 const PlayButStyle = styled.button`
@@ -41,6 +48,10 @@ const PlayButStyle = styled.button`
     align-items: center;
     font-size: 30px;
     color: #EEEEEE;
+
+    :hover {
+      color: red;
+    }
 `
 
 const IllustContainer = styled.img`

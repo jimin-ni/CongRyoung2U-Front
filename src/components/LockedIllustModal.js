@@ -12,7 +12,7 @@ const ModalStyles = styled('container')`
 
     z-index: 1000;
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,6 +27,13 @@ const XButStyle = styled.button`
     right: 10px;
     top: 10px;
     margin: 30px;
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    background-color: black;
+    color: white;
 `
 
 const PlayButStyle = styled.button`
@@ -42,6 +49,10 @@ const PlayButStyle = styled.button`
     align-items: center;
     font-size: 30px;
     color: #EEEEEE;
+
+    :hover {
+      color: red;
+    }
 `
 
 const IllustContainer = styled.img`
@@ -66,7 +77,7 @@ const ModalBasic = ({setModalOpen, data}) => {
         <ModalStyles>
             <div>
                 <IllustContainer src={require("../image/illust_lock.png")}/>
-                <XButStyle onClick={closeModal}>X</XButStyle>
+                <XButStyle onClick={closeModal}>×</XButStyle>
                 <div>
                     <h1>미해금</h1>
                     <div>해금되지 않은 일러스트입니다.</div>

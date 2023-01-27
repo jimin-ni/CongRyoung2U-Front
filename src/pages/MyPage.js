@@ -9,7 +9,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const PageContainer = styled.div`
-    height: 2800px;
+    height: 2200px;
 `
 
 const UserInfoContainer = styled.div`
@@ -53,8 +53,10 @@ const MyPage = () => {
       //console.log(response1.data.illustList)
       setList(response1.data.illustList)
     })
+  }, []);
 
-    let body = {
+  useEffect(() => {
+      let body = {
       _id: userId&&userId
     }
     axios.post("api/users/collection", body).then((response2) => {
@@ -96,14 +98,15 @@ const MyPage = () => {
   return (
     <PageContainer>
       <Navbar />
-      <UserInfoContainer>
-        <div style={{float: 'left'}}>
-          <h1>{info.name}</h1>
-          <h3>{info.email}<br/>해금 일러스트 수 : {userIllust.length} / 14</h3>
-        </div>
-        <IconContainer alt="logo" src={require("../image/main_img_logo.png")}/>
-      </UserInfoContainer>
-      
+      { userId &&
+        <UserInfoContainer>
+          <div style={{float: 'left'}}>
+            <h1>{info.name}<> 님</></h1>
+            <h3>{info.email}<br/>해금 일러스트 수 : {userIllust.length} / 14</h3>
+          </div>
+          <IconContainer alt="logo" src={require("../image/main_img_logo.png")}/>
+        </UserInfoContainer>
+      }
       {
         userItem ? (
           <>

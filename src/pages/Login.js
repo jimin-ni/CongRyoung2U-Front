@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,6 +62,10 @@ const LoginButton = styled.button`
   padding: 20px 0;
   margin: 30px;
   border: none;
+  :hover {
+    background-color: #252A34;
+    cursor: pointer;
+    }
 `;
 
 const Toast = styled.p`
