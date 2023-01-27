@@ -5,12 +5,13 @@ import Game from "../components/game/Game";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import GameEndModal from "../components/game/GameEndModal";
 
 //css
 const PageContainer = styled.div`
     height: 500px;
 `
-const MapInfo_Top = styled.div`
+const MapInfoTop = styled.div`
   height: 130px;
   background-color: #252A34;
   padding: 15px;
@@ -18,7 +19,7 @@ const MapInfo_Top = styled.div`
   display: flex;
   align-items: center;
 `
-const MapInfo_Top_Text = styled.div`
+const MapInfoTopText = styled.div`
   width: 400px;
 `
 const CategoryInfo = styled.div`
@@ -63,12 +64,12 @@ const CharacterInfo = styled.div`
 const GameGround = styled.div`
   text-decoration: none;
 `
-const MapInfo_Bottom_1 = styled.div`
+const MapInfoBottomContainer = styled.div`
   height: 200px;
   background-color: #252A34;
   display: flex;
 `
-const MapInfo_Bottom_2 = styled.div`
+const MapInfoBottomContent = styled.div`
   height: 130px;
   background-color: #EAEAEA;
   padding: 15px;
@@ -110,9 +111,12 @@ font-size: 21px;
 //main code
 const GamePage = () => {
   const location = useLocation();
-  const stageId = location.state.stageId;
-  const [place, setPlace] = useState([]);
-  const [itemScore, setItemScore] = useState(0);
+  const stageId = location.state.stageId;  // 게임페이지로 넘어올 때 전달받은 장소ID
+  const [place, setPlace] = useState([]);  // 장소 상세 정보
+  const [itemScore, setItemScore] = useState(0);  // 아이템 획득 개수
+  const [gameEnd, setGameEnd] = useState("");  // 게임이 어떻게 끝났는지
+  const [modalOpen, setModalOpen] = useState(false);  // 모달 상태 관리
+  
 
   useEffect(() => {
     axios.get(`api/stage/detail/${stageId&&stageId}`).then((response) => {
@@ -125,37 +129,38 @@ const GamePage = () => {
     <>
     <Navbar />
     
-    <MapInfo_Top> {/* 게임 맵 정보-상단 */}
-      <MapInfo_Top_Text>
+    <MapInfoTop> {/* 게임 맵 정보-상단 */}
+      <MapInfoTopText>
         <CategoryInfo>{place.category}</CategoryInfo>{/*  카테고리 불러오기 */}
         <MapIcon><FaMapMarkerAlt /></MapIcon>
         <PlaceInfo>{place.placeName}</PlaceInfo> {/*  장소명 불러오기 */}
         <CharacterInfo>{place.personName}</CharacterInfo>
-      </MapInfo_Top_Text>
+      </MapInfoTopText>
 
       <ItemScoreBox>
         <ItemIMG src={place.itemImage} alt={place.itemName}/> {/*  아이템 이미지 불러오기 */}
         <ItemScore>{itemScore}</ItemScore> {/*  실시간 데이터값 불러오기 */}
       </ItemScoreBox>
-    </MapInfo_Top>
+    </MapInfoTop>
   
     <PageContainer> {/* 그저 게임 */}
       <GameGround>
-        <Game placeImage={place.placeImage} itemImage={place.itemImage} setItemScore={setItemScore} />
+        <Game placeImage={place.placeImage} itemImage={place.itemImage} setModalOpen={setModalOpen} setGameEnd={setGameEnd} itemScore={itemScore} setItemScore={setItemScore} />
       </GameGround>
     </PageContainer>
     
-    <MapInfo_Bottom_1>{/* 게임 맵 정보-하단 */}
-      <MapInfo_Bottom_2>
+    <MapInfoBottomContainer>{/* 게임 맵 정보-하단 */}
+      <MapInfoBottomContent>
         <IllustItem>
           {place.placeName} {/* 일러스트 제목 데이터 */}
         </IllustItem>
         <IllustText>
           {place.placeDesc}
         </IllustText>
-      </MapInfo_Bottom_2>
-    </MapInfo_Bottom_1>
+      </MapInfoBottomContent>
+    </MapInfoBottomContainer>
 
+    {modalOpen && <GameEndModal gameEnd={gameEnd} setGameEnd={setGameEnd} itemScore={itemScore} setModalOpen={setModalOpen} stageId={stageId} illustId={place.illustId} />}
 
     </>
   );

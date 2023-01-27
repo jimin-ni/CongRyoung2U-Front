@@ -37,7 +37,7 @@ const Timer = styled.div`
   display: flex;
 `
 
-const Game = (props) => {
+const Game = ({placeImage, itemImage, setModalOpen, setGameEnd, itemScore, setItemScore}) => {
 	// Init
 	const updateTime = 20;
 	const interval = useRef();
@@ -48,8 +48,6 @@ const Game = (props) => {
 	const [result, setResult] = useState(0);
 	const [isEnemyMove, setIsEnemyMove] = useState(false);
 	const [isItemMove, setIsItemMove] = useState(false);
-
-  const [count, setCount] = useState(0);
 	// 특정 시간을 주기로
 	// 1. Enemy에게 props로 보내는 state를 true 또는 false로 수정
 	// 2. 시간을 체크
@@ -75,8 +73,11 @@ const Game = (props) => {
 		};
 	}, [time, isStart]);
 	
-	// 게임 시작
+	// 게임 시작, 상태 초기화
 	const handleClickStartButton = () => {
+    setModalOpen(false);
+    setGameEnd("");
+    setItemScore(0);
 		setIsStart(true);
 	}
 	// 장애물과의 충돌 체크하고 충돌이면 게임을 종료
@@ -86,7 +87,8 @@ const Game = (props) => {
 		if (enemy !== null && character !== null) {
 			let dis = Math.pow(enemy.x - character.x, 2) + Math.pow(enemy.y - character.y, 2)
 			if (dis < 3000) {
-				alert("Game Over!");
+				setGameEnd("게임 오버!");
+        setModalOpen(true);
 				if (result<time){
 					setResult(time);
 				}
@@ -102,9 +104,12 @@ const Game = (props) => {
 		if (item !== null && character !== null) {
 			let dis = Math.pow(item.x - character.x, 2) + Math.pow(item.y - character.y, 2)
 			if (2000 < dis && dis < 3000) {
-        setCount(count+1);
-        if (count>=10){
-					alert(`아이템 ${count}개 획득`);
+        setItemScore(itemScore+1);
+        if (itemScore>=5){
+					setGameEnd("게임 클리어!");
+          setModalOpen(true);
+          setIsStart(false);
+          setTime(0);
 				}
 			}
 		}
@@ -115,20 +120,18 @@ const Game = (props) => {
 			{
 				isStart ?
 					<div>
-						<Background bgimg={props.placeImage} />
+						<Background bgimg={placeImage} />
 						<Chracter characterImg={require("../../image/main_character.png")} />
 						<Enemy isMove={isEnemyMove}/>
-            <Item itemImg={props.itemImage} isMove={isItemMove}/> {/* 임시 이미지. props로 전달 예정 */}
+            <Item itemImg={itemImage} isMove={isItemMove}/> {/* 임시 이미지. props로 전달 예정 */}
 						<Timer>
-							<div >React Web Game!!</div>
 							<div style={{ margin: "0 0 0 50px" }}> Time : {Math.floor(time)}s</div>
-              <div style={{ margin: "0 0 0 100px" }}> 아이템 : {count}</div>
 						</Timer>
 					</div>
 					:
 					<div>
 						<ImageCover onClick={handleClickStartButton}>
-              <Img src={props.placeImage} alt={`map`} />
+              <Img src={placeImage} alt={`map`} />
 							<StartText>
                 Your Highest Record is {Math.floor(result)}s
                 <br/>
