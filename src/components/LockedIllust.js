@@ -21,6 +21,7 @@ const IllustImage = styled.img`
 const LockedIllust = (props) => {
 
     const data = props.data;
+    const item = props.item;
 
     const showModal = () => {
         props.setModalOpen(false);
@@ -29,15 +30,13 @@ const LockedIllust = (props) => {
     };
 
 
-
-
     return (
         <div>
             <IllustBoxContainer>
                 <IllustContainer onClick={showModal}>
                     <IllustImage src={require("../image/illust_lock.png")}/>
                 </IllustContainer>
-                <h3>아이템 들어가야 됨</h3> 
+                <h3>{item ? <>{item.itemName} ({item.count} / 100)</> : <>???</>}</h3> 
             </IllustBoxContainer>
             
         </div>

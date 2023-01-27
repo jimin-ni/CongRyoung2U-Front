@@ -64,22 +64,14 @@ const MyPage = () => {
       setuserIllust(illustList)
       let itemList = response2.data.collection.itemList
       itemList = itemList.map(function(item){
-        return {itemName: item.illustId.stageId.itemName, count: item.count};
+        return {illustId: item.illustId._id, itemName: item.illustId.stageId.itemName, count: item.count};
       })
       setuserItem(itemList)
-
+      
       //console.log(illustList);
       //console.log(itemList);
     })
   },[]);
-
-  const Illustlist = list?.map((data, index) => {
-    return ((userIllust).includes(data._id)) ? (
-      <Illust data={data} key={index} setModalOpen={setModalOpen} setillustId={setillustId}/>
-    ) : (
-      <LockedIllust data={data} key={index} setModalOpen={setModalOpen} setillustId={setillustId}/>
-    )
-  });
 
   useEffect(() => {
     let body = {
@@ -90,7 +82,16 @@ const MyPage = () => {
       setInfo(response.data.user)
     })
   },[userId]);
-
+  
+  const Illustlist = list?.map((data, index) => {
+    const item = userItem.find(item => {if (item.illustId == data._id) return item})
+    if ((userIllust).includes(data._id)) {
+        return <Illust data={data} key={index} setModalOpen={setModalOpen} setillustId={setillustId}/>
+    } else {
+      //console.log(`아이템 ${item}`);
+      return <LockedIllust data={data} item={item} key={index} setModalOpen={setModalOpen} setillustId={setillustId}/>
+    }
+  });
 
   return (
     <PageContainer>
@@ -103,13 +104,20 @@ const MyPage = () => {
         <IconContainer alt="logo" src={require("../image/main_img_logo.png")}/>
       </UserInfoContainer>
       
-      <IllustTitleContainer>
-        일러스트 목록
-      </IllustTitleContainer>
-      {Illustlist}
-      {/* {(modalOpen && (userIllust).includes(illustId)) ? <IllustModal setModalOpen={setModalOpen} data={illust}/> : <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>} */}
-      {(modalOpen && (userIllust).includes(illustId)) && <IllustModal setModalOpen={setModalOpen} data={illust}/> }
-      {(modalOpen && !((userIllust).includes(illustId))) && <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>}
+      {
+        userItem ? (
+          <>
+        <IllustTitleContainer>
+          일러스트 목록
+        </IllustTitleContainer>
+        {Illustlist}
+        {/* {(modalOpen && (userIllust).includes(illustId)) ? <IllustModal setModalOpen={setModalOpen} data={illust}/> : <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>} */}
+        {(modalOpen && (userIllust).includes(illustId)) && <IllustModal setModalOpen={setModalOpen} data={illust}/> }
+        {(modalOpen && !((userIllust).includes(illustId))) && <LockedIllustModal setModalOpen={setModalOpen} data={illust}/>}
+        </>
+      ) : (
+        <></>
+      )}
     </PageContainer>
     
   );
