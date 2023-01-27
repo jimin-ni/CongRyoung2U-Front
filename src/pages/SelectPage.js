@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import Navbar from "../components/Navbar";
 import PlaceListItem from '../components/PlaceListItem';
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Map from "../components/GoogleMap";
 import SelectModal from '../components/SelectModal';
 import axios from 'axios';
@@ -31,12 +31,21 @@ const CategoryItem = styled.div`
   height: 20px;
   background: #EAEAEA;
   margin: 10px 5px;
-  padding: 3px;
-  padding-right: 10px;
+  padding: 3px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   float: left;
   font-size: 12px;
   border-radius: 20px;
   box-shadow: 2px 2px 2px 2px gray;
+  &:hover { background: lightgray }
+  ${props =>
+    props.active && css`
+    font-weight: 600;
+    background: gray;
+    `
+  }
 `
 
 const MapBlock = styled.div`
@@ -49,11 +58,13 @@ const SelectPage = () => {
   const [stageId, setStageId] = useState("")
   const [places, setPlaces] = useState([])
   const [place, setPlace] = useState("")
+  const [placesArray, setPlacesArray] = useState([]) //원본배열
 
   useEffect(() => {
     axios.get("api/stage/list").then((response) => {
       console.log(response.data.stageList)
       setPlaces(response.data.stageList)
+      setPlacesArray(response.data.stageList)
     })
   },[])
 
@@ -64,25 +75,57 @@ const SelectPage = () => {
     })
   },[stageId])
 
-  const PlaceList = places?.map((data, index) => {
-    return <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} setStageId={setStageId} />
-  })
+  const categories = [
+    {name: '전체', text:'전체'},
+    {name: '과학자', text:'과학자'},
+    {name: '공학자', text:'공학자'},
+    {name: '기업인', text:'기업인'},
+    {name: '정치인', text:'정치인'},
+    {name: '인권운동가', text:'인권운동가'},
+  ]
+
+  const [category, setCategory] = useState('전체');
+  const onSelect = (category) => {
+    setCategory(category)
+    if (category==='전체') setPlaces(placesArray)
+    else {
+    const cate = placesArray.filter(place => {if (category == place.category) return place });
+    console.log(category);
+    setPlaces(cate);
+    }
+  };
+
+  const Categories = ({ onSelect, category }) => {
+    return (
+      <CategoryBlock>
+          {categories.map(c => (
+            <CategoryItem key={c.name}
+              active={category===c.name}
+              onClick={() => onSelect(c.name)}
+            >{c.text}</CategoryItem>
+          ))}
+      </CategoryBlock>
+    );
+  };
+
+  const PlaceList = ({data, category}) => {
+    
+    return (
+      <PlaceTemplateBlock>
+        {places?.map((data, index) => (
+          <PlaceListItem data={data} key={index} setModalOpen={setModalOpen} setStageId={setStageId} />
+        ))}
+      </PlaceTemplateBlock>
+    );
+  };
 
   return (
     <PageContainer>
       <Navbar />
       <MapBlock>
         <Map setModalOpen={setModalOpen} setStageId={setStageId}/>
-        <CategoryBlock>
-          <CategoryItem><input type="checkbox" id="1"></input>과학자</CategoryItem>
-          <CategoryItem><input type="checkbox" id="2"></input>공학자</CategoryItem>
-          <CategoryItem><input type="checkbox" id="3"></input>기업인</CategoryItem>
-          <CategoryItem><input type="checkbox" id="4"></input>정치인</CategoryItem>
-          <CategoryItem><input type="checkbox" id="5"></input>인권운동가</CategoryItem>
-        </CategoryBlock>
-        <PlaceTemplateBlock>
-          {PlaceList}
-        </PlaceTemplateBlock>
+        <Categories category={category} onSelect={onSelect} />
+        <PlaceList category={category} />
         {modalOpen && <SelectModal setModalOpen={setModalOpen} id={stageId} data={place} />}
       </MapBlock>
     </PageContainer>
