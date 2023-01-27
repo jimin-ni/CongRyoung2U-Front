@@ -1,5 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
+import React from 'react';
+
 
 const IllustContainer = styled.div`
     height: 350px;
@@ -17,9 +18,10 @@ const IllustImage = styled.img`
 `
 
 
-const Illust = (props) => {
+const LockedIllust = (props) => {
 
     const data = props.data;
+    const item = props.item;
 
     const showModal = () => {
         props.setModalOpen(false);
@@ -27,17 +29,19 @@ const Illust = (props) => {
         props.setModalOpen(true);
     };
 
-    
+
     return (
         <div>
             <IllustBoxContainer>
                 <IllustContainer onClick={showModal}>
-                    <IllustImage src={data.image}/>
+                    <IllustImage src={require("../image/illust_lock.png")}/>
                 </IllustContainer>
-                <h3>{data.name}</h3> 
+                <h3>{item ? <>{item.itemName} ({item.count} / 100)</> : <>???</>}</h3> 
             </IllustBoxContainer>
             
         </div>
     );
 };
-export default Illust;
+export default LockedIllust;
+
+

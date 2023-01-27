@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import React, { useRef, useEffect } from 'react';
 
 const ModalStyles = styled('container')`
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
@@ -64,11 +65,11 @@ const ModalBasic = ({setModalOpen, data}) => {
     return (
         <ModalStyles>
             <div>
-                <IllustContainer src={data.image}/>
+                <IllustContainer src={require("../image/illust_lock.png")}/>
                 <XButStyle onClick={closeModal}>X</XButStyle>
                 <div>
-                    <h1>{data.name}</h1>
-                    <div>{data.desc}</div>
+                    <h1>미해금</h1>
+                    <div>해금되지 않은 일러스트입니다.</div>
                 </div>
                 <Play to={`/game`}>
                     <PlayButStyle><FaPlay /></PlayButStyle>
