@@ -37,7 +37,7 @@ const Timer = styled.div`
   display: flex;
 `
 
-const Game = () => {
+const Game = (props) => {
 	// Init
 	const updateTime = 20;
 	const interval = useRef();
@@ -115,10 +115,10 @@ const Game = () => {
 			{
 				isStart ?
 					<div>
-						<Background bgimg={require("../../image/background_test.png")} />
+						<Background bgimg={props.placeImage} />
 						<Chracter characterImg={require("../../image/main_character.png")} />
 						<Enemy isMove={isEnemyMove}/>
-            <Item itemImg={require("../../image/ic_globe.png")} isMove={isItemMove}/> {/* 임시 이미지. props로 전달 예정 */}
+            <Item itemImg={props.itemImage} isMove={isItemMove}/> {/* 임시 이미지. props로 전달 예정 */}
 						<Timer>
 							<div >React Web Game!!</div>
 							<div style={{ margin: "0 0 0 50px" }}> Time : {Math.floor(time)}s</div>
@@ -128,7 +128,7 @@ const Game = () => {
 					:
 					<div>
 						<ImageCover onClick={handleClickStartButton}>
-              <Img src={require("../../image/background_test.png")} alt={`map`} />
+              <Img src={props.placeImage} alt={`map`} />
 							<StartText>
                 Your Highest Record is {Math.floor(result)}s
                 <br/>

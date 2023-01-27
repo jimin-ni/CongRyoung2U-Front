@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Game from "../components/game/Game";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 //css
 const PageContainer = styled.div`
@@ -36,18 +38,20 @@ const PlaceInfo = styled.div`
 const ItemScoreBox = styled.div` 
   text-decoration: none;
   background-color: #EAEAEA;
-  padding: 30px;
+  padding: 20px;
   margin: 10px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   margin-left: auto;
 `
-const ItemIMG = styled.div`
-text-decoration: none;
+const ItemIMG = styled.img`
+  width: 30px;
+  height: 30px;
 `
 const ItemScore = styled.div`
-text-decoration: none;
+  margin-left: 20px;
+  font-size: 32px;
 `
 const CharacterInfo = styled.div`
   padding: 10px;
@@ -105,37 +109,49 @@ font-size: 21px;
 
 //main code
 const GamePage = () => {
+  const location = useLocation();
+  const stageId = location.state.stageId;
+  const [place, setPlace] = useState([]);
+  const [itemScore, setItemScore] = useState(0);
+
+  useEffect(() => {
+    axios.get(`api/stage/detail/${stageId&&stageId}`).then((response) => {
+      console.log(response.data.stage)
+      setPlace(response.data.stage)
+    })
+  },[stageId])
+
   return (
     <>
     <Navbar />
     
     <MapInfo_Top> {/* 게임 맵 정보-상단 */}
       <MapInfo_Top_Text>
-        <CategoryInfo>카테고리</CategoryInfo>{/*  카테고리 불러오기 */}
+        <CategoryInfo>{place.category}</CategoryInfo>{/*  카테고리 불러오기 */}
         <MapIcon><FaMapMarkerAlt /></MapIcon>
-        <PlaceInfo>장소명</PlaceInfo> {/*  장소명 불러오기 */}
-        <CharacterInfo>인물이름</CharacterInfo>
+        <PlaceInfo>{place.placeName}</PlaceInfo> {/*  장소명 불러오기 */}
+        <CharacterInfo>{place.personName}</CharacterInfo>
       </MapInfo_Top_Text>
 
       <ItemScoreBox>
-        <ItemIMG>아이템그림</ItemIMG> {/*  아이템 이미지 불러오기 */}
-        <ItemScore>20</ItemScore> {/*  실시간 데이터값 불러오기 */}
+        <ItemIMG src={place.itemImage} alt={place.itemName}/> {/*  아이템 이미지 불러오기 */}
+        <ItemScore>{itemScore}</ItemScore> {/*  실시간 데이터값 불러오기 */}
       </ItemScoreBox>
     </MapInfo_Top>
   
     <PageContainer> {/* 그저 게임 */}
       <GameGround>
-        <Game />
+        <Game placeImage={place.placeImage} itemImage={place.itemImage} setItemScore={setItemScore} />
       </GameGround>
     </PageContainer>
     
     <MapInfo_Bottom_1>{/* 게임 맵 정보-하단 */}
       <MapInfo_Bottom_2>
         <IllustItem>
-          획득 예정 아이템: 일러스트 명 {/* 일러스트 제목 데이터 */}
+          {place.placeName} {/* 일러스트 제목 데이터 */}
         </IllustItem>
         <IllustText>
-          일러스트 설명 및 소개 간략히 2줄 내외~~
+          {place.placeDesc}
         </IllustText>
       </MapInfo_Bottom_2>
     </MapInfo_Bottom_1>

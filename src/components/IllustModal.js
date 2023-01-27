@@ -70,7 +70,7 @@ const ModalBasic = ({setModalOpen, data}) => {
                     <h1>{data.name}</h1>
                     <div>{data.desc}</div>
                 </div>
-                <Play to={`/game`}>
+                <Play to={`/game`} state={{ stageId: data.stageId }}>
                     <PlayButStyle><FaPlay /></PlayButStyle>
                 </Play>
             </div>

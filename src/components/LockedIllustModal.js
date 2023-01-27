@@ -71,7 +71,7 @@ const ModalBasic = ({setModalOpen, data}) => {
                     <h1>미해금</h1>
                     <div>해금되지 않은 일러스트입니다.</div>
                 </div>
-                <Play to={`/game`}>
+                <Play to={`/game`} state={{ stageId: data.stageId }}>
                     <PlayButStyle><FaPlay /></PlayButStyle>
                 </Play>
             </div>

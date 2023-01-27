@@ -113,7 +113,7 @@ function ModalBasic({ setModalOpen, data })
         <BirthDeath>({data.personYear})</BirthDeath>
         <PersonDesc>{data.personDesc}</PersonDesc>
         <Item>보상: {data.itemName}</Item>
-        <Play to={`/game`}>
+        <Play to={`/game`} state={{ stageId: data._id }}>
           <PlayButton><FaPlay /></PlayButton>
         </Play>
     </ModalStyles>
