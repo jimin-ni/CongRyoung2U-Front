@@ -5,19 +5,36 @@ import { Link } from "react-router-dom";
 
 const ModalStyles = styled.div`
   width: 500px;
-  height: 900px;
+  height: 820px;
   padding: 20px;
 
   z-index: 999;
 
   position: absolute;
-  top: 105px;
+  top: 80px;
   right: 0%;
 
   background-color: #252A34;
   color: white;
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
+`
+const XButStyle = styled.button`
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    margin: 30px;
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    background-color: black;
+    color: white;
+`
+
+
+const PlaceContainer = styled.div`
 `
 const PlaceName = styled.div`
   margin-top: 20px;
@@ -29,54 +46,57 @@ const PlaceDesc = styled.div`
   letter-spacing: 2px;
   text-align: justify;
   padding: 20px;
-  height: 200px;
+  height: 150px;
+`
+const PersonContainer = styled.div`
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+`
+const PersonContent = styled.div`
+  width: 200px;
+  padding: 20px;
+
 `
 const PersonImageBlock = styled.div`
   margin: 20px;
-  width: 214.285px;
-  height: 285.714px;
-  position: relative;
-  top: 50px;
+  width: 180px;
+  height: 240px;
 `
 const PersonImage = styled.img`
-  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
 `
 const PersonName = styled.div`
-  padding: 20px;
+  width: 100%;
+  padding: 10px 20px;
   font-size: 30px;
   font-weight: bold;
-  position: relative;
-  top: -335px;
 `
 const BirthDeath = styled.div`
-  font-size: 15px;
-  position: relative;
-  top: -340px;
-  left: 255px;
+  width: 100%;
+  padding: 0 20px;
+  font-size: 16px;
 `
 const PersonDesc = styled.div`
-  padding: 20px;
   width: 230px;
   height: 250px;
-  position: relative;
-  top: -350px;
-  left: 235px;
   letter-spacing: 2px;
   text-align: justify;
+`
+
+const PlayContainer = styled.div`
+  text-align: center;
 `
 const Item = styled.div`
   padding: 20px;
   margin-bottom: 10px;
-  position: relative;
-  top: -290px;
-  left: 5px;
-  text-align: center;
 `
 const Play = styled(Link)`
+  display: inline-block;
   text-decoration: none;
+  margin: auto;
 `
 const PlayButton = styled.div`
   padding: 20px;
@@ -84,9 +104,6 @@ const PlayButton = styled.div`
   height: 15px;
   border-radius: 30px;
   background: #08D9D6;
-  position: relative;
-  top: -310px;
-  left: 190px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,21 +118,28 @@ function ModalBasic({ setModalOpen, data })
 
   return (
     <ModalStyles>
-        <button className='close' onClick={closeModal}>
-          X
-        </button>
-        <PlaceName>{data.placeName}</PlaceName>
-        <PlaceDesc>{data.placeDesc}</PlaceDesc>
-        <PersonImageBlock>
-          <PersonImage src={data.personImage} />
-        </PersonImageBlock>
-        <PersonName>{data.personName}</PersonName>
-        <BirthDeath>({data.personYear})</BirthDeath>
-        <PersonDesc>{data.personDesc}</PersonDesc>
-        <Item>보상: {data.itemName}</Item>
-        <Play to={`/game`} state={{ stageId: data._id }}>
-          <PlayButton><FaPlay /></PlayButton>
-        </Play>
+        <XButStyle onClick={closeModal}>×</XButStyle>
+        <PlaceContainer>
+          <PlaceName>{data.placeName}</PlaceName>
+          <PlaceDesc>{data.placeDesc}</PlaceDesc>
+        </PlaceContainer>
+        <PersonContainer>        
+          <PersonName>{data.personName}</PersonName>
+          <BirthDeath>({data.personYear})</BirthDeath>
+          <PersonImageBlock>
+            <PersonImage src={data.personImage} />
+          </PersonImageBlock>
+          <PersonContent>
+            <PersonDesc>{data.personDesc}</PersonDesc>
+          </PersonContent>
+        </PersonContainer>
+        <PlayContainer>
+          <Item>보상: {data.itemName}</Item>
+          <Play to={`/game`} state={{ stageId: data._id }}>
+            <PlayButton><FaPlay /></PlayButton>
+          </Play>
+        </PlayContainer>
+        
     </ModalStyles>
   );
 }

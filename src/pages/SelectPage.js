@@ -12,15 +12,18 @@ const PageContainer = styled.div`
 `
 const PlaceTemplateBlock = styled.div `
   width: 420px;
-  height: 930px;
+  height: 800px;
   position: relative;
   top: -1000px;
   z-index: 500;
   overflow: scroll;
+  ::-webkit-scrollbar {
+  display: none;
+}
 `
 const CategoryBlock = styled.div`
-  width: 500px;
-  height: 50px;
+  width: 600px;
+  height: 70px;
   padding-left: 15px;
   padding-top: 20px;
   position: relative;
@@ -31,12 +34,12 @@ const CategoryItem = styled.div`
   height: 20px;
   background: #EAEAEA;
   margin: 10px 5px;
-  padding: 3px 10px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   float: left;
-  font-size: 12px;
+  font-size: 20px;
   border-radius: 20px;
   box-shadow: 2px 2px 2px 2px gray;
   &:hover { background: lightgray }
