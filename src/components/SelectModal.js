@@ -74,7 +74,6 @@ const Item = styled.div`
   top: -290px;
   left: 5px;
   text-align: center;
-  background: black;
 `
 const Play = styled(Link)`
   text-decoration: none;
