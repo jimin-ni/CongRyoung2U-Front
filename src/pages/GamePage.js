@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
+import Game from "../components/game/Game";
 //import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-//BackGround 스크립트 불러옴
-import Background from '../components/Background';
-
 const PageContainer = styled.div`
-    height: 700px;
+    height: 500px;
 `
 
 //3개는 좌측 정렬, 하나는 우측정렬
@@ -72,20 +70,18 @@ const GameGround = styled.div`
 `
 
 const MapInfo_Bottom_1 = styled.div`
-  height: 190px;
+  height: 200px;
   background-color: #252A34;
-  padding: 0px;
   display: flex;
-  align-items: center;
-  position:relative;
 `
 const MapInfo_Bottom_2 = styled.div`
   height: 130px;
   background-color: #EAEAEA;
   padding: 15px;
+  margin-top: 40px;
   position: bottom;
   border-radius: 30px 30px 0 0;
-  width: 700%;
+  width: 100%;
 
 `
 const IllustItem = styled.div`
@@ -131,7 +127,7 @@ const GamePage = () => {
   
     <PageContainer> {/* 그저 게임 */}
       <GameGround>
-        게임 플레이 영역
+        <Game />
       </GameGround>
     </PageContainer>
     

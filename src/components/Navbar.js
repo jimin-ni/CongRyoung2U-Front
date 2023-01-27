@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const NavContainer = styled.div`
-  height: 70px;
+  height: 60px;
   background-color: black;
-  padding: 15px;
+  padding: 10px;
   font-size: 20px;
   display: flex;
   align-items: center;
