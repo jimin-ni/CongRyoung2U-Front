@@ -14,7 +14,7 @@ const center = {
   lng: 127
 };
 
-function Map() {
+function Map(props) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY
@@ -22,7 +22,6 @@ function Map() {
 
   const [map, setMap] = React.useState(null)
   const [locations, setLocations] = useState([])
-  const [modalOpen, setModalOpen] = useState(false);
   const [stageId, setStageId] = useState("")
   const [place, setPlace] = useState("")
 
@@ -54,8 +53,8 @@ function Map() {
       lng: data.lng
     }
     const showModal = () => {
-      setStageId(data._id);
-      setModalOpen(true);
+      props.setStageId(data._id);
+      props.setModalOpen(true);
     };
     return (
       <MarkerF position={location} data={data} key={index} onClick={showModal} />
@@ -74,7 +73,7 @@ function Map() {
         {LocationList}
         <></>
       </GoogleMap>
-      {modalOpen && <SelectModal setModalOpen={setModalOpen} id={stageId} data={place} />}
+
     </div>
   ) : <></>
 }
