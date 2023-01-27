@@ -2,6 +2,7 @@ import React from 'react'
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import SelectModal from "./SelectModal";
 
 const containerStyle = {
   width: '100%',
@@ -20,6 +21,11 @@ function Map() {
   })
 
   const [map, setMap] = React.useState(null)
+  const [locations, setLocations] = useState([])
+  const [modalOpen, setModalOpen] = useState(false);
+  const [stageId, setStageId] = useState("")
+  const [place, setPlace] = useState("")
+
   const onLoad = React.useCallback(function callback(map) {
     map.setZoom(5)
     setMap(map)
@@ -28,7 +34,6 @@ function Map() {
     setMap(null)
   }, [])
 
-  const [locations, setLocations] = useState([])
   useEffect(() => {
     axios.get("api/stage/list").then((response) => {
       console.log(response.data.stageList)
@@ -36,17 +41,29 @@ function Map() {
     })
   },[])
 
+  useEffect(() => {
+    axios.get(`api/stage/detail/${stageId&&stageId&&stageId}`).then((response) => {
+      console.log(response.data.stage)
+      setPlace(response.data.stage)
+    })
+  },[stageId])
+
   const LocationList = locations?.map((data, index) => {
     const location = {
       lat: data.lat,
       lng: data.lng
     }
+    const showModal = () => {
+      setStageId(data._id);
+      setModalOpen(true);
+    };
     return (
-      <MarkerF position={location} data={data} key={index} />
+      <MarkerF position={location} data={data} key={index} onClick={showModal} />
     )
   })
 
   return isLoaded ? (
+    <div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -57,6 +74,8 @@ function Map() {
         {LocationList}
         <></>
       </GoogleMap>
+      {modalOpen && <SelectModal setModalOpen={setModalOpen} id={stageId} data={place} />}
+    </div>
   ) : <></>
 }
 

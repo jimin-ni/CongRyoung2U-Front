@@ -72,7 +72,9 @@ const Item = styled.div`
   margin-bottom: 10px;
   position: relative;
   top: -290px;
-  left: 190px;
+  left: 5px;
+  text-align: center;
+  background: black;
 `
 const Play = styled(Link)`
   text-decoration: none;
