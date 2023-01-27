@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ModalStyles = styled.div`
   width: 500px;
@@ -73,6 +74,9 @@ const Item = styled.div`
   top: -290px;
   left: 190px;
 `
+const Play = styled(Link)`
+  text-decoration: none;
+`
 const PlayButton = styled.div`
   padding: 20px;
   width: 90px;
@@ -108,7 +112,9 @@ function ModalBasic({ setModalOpen, data })
         <BirthDeath>({data.personYear})</BirthDeath>
         <PersonDesc>{data.personDesc}</PersonDesc>
         <Item>보상: {data.itemName}</Item>
-        <PlayButton><FaPlay /></PlayButton>
+        <Play to={`/game`}>
+          <PlayButton><FaPlay /></PlayButton>
+        </Play>
     </ModalStyles>
   );
 }

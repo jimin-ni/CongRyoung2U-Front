@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
-import { useState } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 const containerStyle = {
   width: '100%',
@@ -20,30 +20,41 @@ function Map() {
   })
 
   const [map, setMap] = React.useState(null)
-
   const onLoad = React.useCallback(function callback(map) {
-    map.setZoom(3)
+    map.setZoom(5)
     setMap(map)
   }, [])
-
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
 
-  const [locations, setLocations] = useState([
-    { lat: "35", lng: "127" },
-    { lat: "-35", lng: "150 "}
-  ]);
+  const [locations, setLocations] = useState([])
+  useEffect(() => {
+    axios.get("api/stage/list").then((response) => {
+      console.log(response.data.stageList)
+      setLocations(response.data.stageList)
+    })
+  },[])
+
+  const LocationList = locations?.map((data, index) => {
+    const location = {
+      lat: data.lat,
+      lng: data.lng
+    }
+    return (
+      <MarkerF position={location} data={data} key={index} />
+    )
+  })
 
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={3}
+        zoom={5}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        { <MarkerF position={center} />}
+        {LocationList}
         <></>
       </GoogleMap>
   ) : <></>
