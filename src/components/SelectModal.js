@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from "styled-components";
 import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ const ModalStyles = styled.div`
   z-index: 999;
 
   position: absolute;
-  top: 125px;
+  top: 105px;
   right: 0%;
 
   background-color: #252A34;
