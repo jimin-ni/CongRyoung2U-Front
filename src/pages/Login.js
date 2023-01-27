@@ -31,16 +31,24 @@ const MainImage = styled.img`
   height: 700px;
   margin: 40px 0 0 300px;
 `
+const Form = styled.form`
+  width: 300px;
+  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+`
 const Title = styled.div`
   color: white;
   font-weight: bold;
   font-size: 40px;
-`
-const Form = styled.form`
-  margin: 30px;
+  margin: 20px;
 `
 const Input = styled.input`
+  display: block;
   padding: 6px;
+  margin: 20px;
   font-size: 20px;
 `
 const LoginButton = styled.button`
@@ -53,6 +61,7 @@ const LoginButton = styled.button`
   font-size: 24px;
   border-radius: 100px;
   padding: 20px 0;
+  margin: 30px;
   border: none;
 `;
 
@@ -116,8 +125,8 @@ const Login = () => {
             <MainImage src={require("../image/main_img.png")} alt={`GGG 대문 이미지`} />
           </LeftContainer>
           <RightContainer>
-              <Title>To. You</Title>
               <Form onSubmit={handleSubmit}>
+                <Title>To. You</Title>
                 <Input
                   type="email"
                   name="email"
