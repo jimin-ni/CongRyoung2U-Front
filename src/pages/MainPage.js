@@ -29,8 +29,18 @@ const RightContainer = styled.div`
 const Explain = styled.div`
   width: 500px;
   height: 400px;
-  background: #ffffff66;
+  background: #ffffff88;
   padding: 40px;
+  font-size: 24px;
+  margin: 0 0 40px 40px;
+`
+
+const ExplainImg = styled.img`
+  width: 500px;
+  height: 400px;
+  background: #ffffff44;
+  padding: 40px;
+  font-size: 24px;
   margin: 0 0 40px 40px;
 `
 
@@ -69,9 +79,7 @@ const MainPage = () => {
         <MainImage src={require("../image/main_img_logo.png")} alt={`GGG 대문 이미지`} />
       </LeftContainer>
       <RightContainer>
-        <Explain>
-          콩룡이와 함께 세계를 여행해요!
-        </Explain>
+        <ExplainImg src={require("../image/main_text.png")} alt={`GGG 설명`} />
         <MapButton to={`/select`}>
           <ButtonShape >
             <ButtonIcon src={require("../image/ic_globe.png")} alt={`map`} />
