@@ -1,13 +1,11 @@
-# 콩룡투유
 
 ![header](https://capsule-render.vercel.app/api?type=waving&text=GGG&fontSize=60&fontColor=F2E0FE) 
 <br/>
 <br/>
-덕성여자대학교 컴퓨터공학전공 개발 동아리 코너 '제 1회 코너 해커톤' 출품작  
+덕성여자대학교 컴퓨터공학전공 개발 동아리 코너 '제 1회 코너 해커톤' 우승작  
 
-<div align="center">
 <h1>✨ GGG : the Great Girls’ Globe ✨<br/>- 세계 여성 위인 정보 제공 웹 브라우저 게임 -</h1>  
-</div>
+
 
 <br/>
 <br/>
@@ -21,40 +19,45 @@
 <br/>
 
 <h2> 📌 주제 </h2>
-덕성여자대학교 만의 취업 정보 및 후기 공유 웹사이트
+세계 여성 위인 정보를 제공하는 웹 브라우저 게임
 <br/>
 <br/>
-취업을 준비하면서 같은 전공 선배 혹은 동문의 도움이 필요한 학생, <br/>
-타 대학에 없는 전공으로 취업을 위한 정보를 알기 힘든 학생, <br/>
-취업을 위한 로드맵 작성이 어려워 계획이 막막한 저학년 학생까지 <br/>
-도움이 필요한 덕성여대 학우를 위한 웹사이트 입니다.
-  <br/>
-  <br/>
-취업 정보 공유를 수월히 하고, 동문 간 정보를 안전히 공유하며, 함께 협력할 수 있습니다.
+콩콩 뛰는 공룡과 To You를 합친 단어로,<br/>
+지구로 돌아온 공룡이 우리의 미래가 될 수도 있는, <br/>
+빛나는 여성의 이야기를 향한다는 의미를 담은<br/>
+팀 '콩룡투유'에서 개발한 웹 브라우저 게임입니다.
+<br/>
+<br/>
+이룬 업적과 성공만큼 알려지지 못했던 여성 위인들의 발자취를 쉽고 재미있게 알리기 위해서<br/>
+하나의 작은 여성 위인 전시관으로 기능할 수 있는 서비스를, 달리기 게임과 접목시켜 구상하였습니다.<br/>
+<br/>
+서비스 제공 대상은 전 세계 사용자와 여성 위인에 대해 많은 관심을 가진 사람입니다.<br/>
 <br/>
 <br/>
 <br/>
 
 <h2> 🛠 담당 및 역할 </h2>
-프론트엔드 및 기획 담당
+프론트엔드 및 기획, 발표 및 시현 담당  <br/>
   <br/>
+  저는 리액트를 사용해 게임을 만들 수 있는 코드 자료를 탐색해 유저의 클릭으로 게임 시작하게 만들기, 아이템과 장애물 화면에 띄우기 등 코드의 변형 및 응용으로 다양한 실험을 시도했습니다.<br/>
+  이에 대한 [깃 레포지토리](https://github.com/jimin-ni/react-test-jumpgame)는 이와 같습니다.<br/>
   <br/>
+  또한 게임 페이지의 전반적인 레이아웃과 게임 클리어 및 실패시 떠오르는 모달 창을 리액트를 사용해 개발했습니다.
   
-제작한 페이지는 전공/직군의 상세 설명에 대한 페이지로 총 3가지 종류입니다.
-![image](https://user-images.githubusercontent.com/101644134/220550569-e9db1ff4-1ab0-4328-b5cc-b267920a8f86.png)
-
-본 웹페이지의 실제 유저-게시자의 역할을 3가지로 분리해 카테고리를 나눈 구조가 특징입니다. 
-![image](https://user-images.githubusercontent.com/101644134/220550960-101906c7-fa8c-4eff-8599-ed171ecf8f65.png)
+ ![image](https://user-images.githubusercontent.com/101644134/220597212-367aabad-29a8-4ea1-b872-ff053db32b91.png)
 
 <br/>
 <br/>
 <br/>
 
 <h2> 📚 사용 스텍 </h2>
-<img src="https://img.shields.io/badge/CSS3-231572B6?style=flat&logo=HTML&logoColor=white"/>
-<img src="https://img.shields.io/badge/REACT-231572B6?style=flat&logo=HTML&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-ff8c00?style=for-the-badge&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-ffd700?style=for-the-badge&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-108b94?style=for-the-badge&logo=React&logoColor=white"/>
 
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>HTML5</title><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg> <img src="https://img.shields.io/badge/HTML5-23E34F2?style=flat&logo=HTML&logoColor=white"/>
+
+
+
 
 <br/>
 <br/>
